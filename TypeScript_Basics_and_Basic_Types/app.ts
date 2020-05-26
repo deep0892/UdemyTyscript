@@ -19,3 +19,12 @@ let username: string;
 if (typeof userInput === "string") {
   username = userInput;
 }
+
+// The "never" type
+// This is function never produces a value
+function generateError(message: string, code: number): never {
+  throw { message: message, errorCode: code };
+  // while(true){}
+}
+
+generateError("An error occured", 500);
