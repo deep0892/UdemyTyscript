@@ -31,7 +31,7 @@ let favoriteActivities: string[];
 favoriteActivities = ["Sports"];
 
 // person.role[1] = 1;  Error
-// person.role.push("admin"); Does no give error and is allowed by typescript
+// person.role.push("admin"); Does not give error and is allowed by typescript
 
 console.log("person", person);
 
@@ -39,5 +39,5 @@ for (const hobby of person.hobbies) {
   console.log(hobby);
 }
 if (person.role == Role.ADMIN) {
-  console.log("is ADMIn", "");
+  console.log("is ADMIN", "");
 }
