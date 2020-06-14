@@ -32,3 +32,13 @@ const person = {
 };
 
 const copiedPerson = { ...person };
+
+const newAdd = (...numbers: number[]) => {
+  let result = 0;
+  numbers.reduce((previous, current) => {
+    return current + previous;
+  }, 0);
+};
+
+const addedNumbers = newAdd(5, 10, 2, 23, 4, 5);
+console.log(addedNumbers);
