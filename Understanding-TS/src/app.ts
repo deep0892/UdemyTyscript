@@ -112,3 +112,39 @@ console.log(newAccounting.printReports());
 console.log(newAccounting.printEmployeeInformation());
 console.log(newAccounting.mostRecentReport);
 
+// Abstract classes cannot be instantiated
+// Classes inheriting from abstract classes have
+// to implement the abstract method and properties
+abstract class AbsDepartment {
+  static fiscalYear = 2020;
+  protected employees: string[] = [];
+
+  constructor(protected readonly id: string, public name: string) {
+    // this.id = id;
+    // this.name = name;
+  }
+
+  static createEmployee(name: string) {
+    return { name: name };
+  }
+
+  abstract describe(this: Department): void;
+
+  addEmployee(employee: string) {
+    this.employees.push(employee);
+
+  }
+
+  printEmployeeInformation() {
+    console.log(this.employees.length);
+    console.log(this.employees);
+  }
+}
+
+class Finance extends AbsDepartment {
+
+  // Compulsary to implement as inherited from abstract class
+  describe() {
+    console.log(`Department: (${this.id}) ${this.name}`);
+  }
+}
