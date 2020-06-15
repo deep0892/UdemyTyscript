@@ -25,16 +25,12 @@ class Department {
 }
 
 const accounting = new Department('A&B', 'Accounting');
-
 accounting.addEmployee('Max');
 accounting.addEmployee('Manu');
-
 // employees is a private property 
 // and hence cannot be set from outside the class
 // accounting.employees.push("Anna");
-
 console.log(accounting);
-
 accounting.describe();
 accounting.printEmployeeInformation();
 
@@ -42,3 +38,35 @@ const accountingCopy = { describe: accounting.describe };
 
 // accountingCopy.describe()   gives error becoz that constructor wasnt invoked for this.
 
+// Inheritance
+class ITDepartment extends Department {
+  admins: string[];
+  constructor(id: string, admins: string[]) {
+    super(id, 'IT');
+    this.admins = admins;
+  }
+}
+
+const it = new ITDepartment('d2', ['Max']);
+it.describe();
+
+
+class AccountingDepartmnent extends Department {
+  constructor(id: string, private reports: string[]) {
+    super(id, 'Accounting');
+  }
+
+  addReport(report: string) {
+    this.reports.push(report);
+  }
+
+  printReports() {
+    console.log(this.reports);
+  }
+}
+
+const newAccounting = new AccountingDepartmnent('d3', []);
+newAccounting.addReport('First Report');
+newAccounting.addReport('Second Report');
+console.log(newAccounting);
+console.log(newAccounting.printReports());
