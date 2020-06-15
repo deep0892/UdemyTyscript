@@ -112,3 +112,13 @@ const paragraph = document.getElementById('message-output');
 const userInputElement = document.getElementById("user-input")! as HTMLInputElement;
 
 userInputElement.value = "Hi There!";
+
+// Index Properties
+interface ErrorContainer {
+  [prop: string]: string;
+}
+
+const errorBag: ErrorContainer = {
+  email: 'Not a email',
+  userName: 'Must start with a capital letter'
+};
