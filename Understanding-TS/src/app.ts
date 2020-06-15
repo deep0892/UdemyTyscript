@@ -16,8 +16,11 @@ user1 = {
 
 user1.greet('Hi there, I am');
 
-interface Greetable {
-  name: string,
+interface Named {
+  readonly name: string;
+}
+
+interface Greetable extends Named {
   greet(phase: string): void;
 }
 
@@ -34,3 +37,15 @@ class NewPerson implements Greetable {
 
 let user2 = new NewPerson('Max');
 user2.greet('Hi there, I am');
+
+// interface as function types
+
+interface AddFn {
+  (a: number, b: number): number;
+}
+
+let addition: AddFn;
+
+addition = (n1: number, n2: number) => {
+  return n1 + n2;
+};
