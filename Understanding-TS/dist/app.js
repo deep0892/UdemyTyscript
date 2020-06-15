@@ -1,33 +1,34 @@
 "use strict";
-class Department {
-    constructor(id, name) {
-        this.id = id;
-        this.name = name;
-        // private readonly id: string;
-        // public name: string;
-        this.employees = [];
-        // this.id = id;
-        // this.name = name;
+var user1;
+user1 = {
+    name: 'Max',
+    age: 27,
+    greet: function (phrase) {
+        console.log(phrase + ' ' + this.name);
     }
-    describe() {
-        console.log(`Department: (${this.id}) ${this.name}`);
+};
+user1.greet('Hi there, I am');
+var NewPerson = /** @class */ (function () {
+    // Optional parameter in function
+    function NewPerson(n) {
+        this.age = 20;
+        if (n) {
+            this.name = n;
+        }
     }
-    addEmployee(employee) {
-        this.employees.push(employee);
-    }
-    printEmployeeInformation() {
-        console.log(this.employees.length);
-        console.log(this.employees);
-    }
-}
-const accounting = new Department('A&B', 'Accounting');
-accounting.addEmployee('Max');
-accounting.addEmployee('Manu');
-// employees is a private property 
-// and hence cannot be set from outside the class
-// accounting.employees.push("Anna");
-console.log(accounting);
-accounting.describe();
-accounting.printEmployeeInformation();
-const accountingCopy = { describe: accounting.describe };
-// accountingCopy.describe()   gives error becoz that constructor wasnt invoked for this.
+    NewPerson.prototype.greet = function (phrase) {
+        if (this.name) {
+            console.log(phrase + ' ' + this.name);
+        }
+        else {
+            console.log('Hi');
+        }
+    };
+    return NewPerson;
+}());
+var user2 = new NewPerson('Max');
+user2.greet('Hi there, I am');
+var addition;
+addition = function (n1, n2) {
+    return n1 + n2;
+};
