@@ -1,4 +1,5 @@
 class Department {
+  static fiscalYear = 2020;
   // private readonly id: string;
   // public name: string;
   // Protected properties can be accessed from child classes
@@ -7,6 +8,10 @@ class Department {
   constructor(private readonly id: string, public name: string) {
     // this.id = id;
     // this.name = name;
+  }
+
+  static createEmployee(name: string) {
+    return { name: name };
   }
 
   describe(this: Department) {
@@ -89,6 +94,9 @@ class AccountingDepartmnent extends Department {
     console.log(this.reports);
   }
 }
+
+const employee1 = Department.createEmployee('Max');
+console.log('employee1', employee1, 'FiscalYear', Department.fiscalYear);
 
 const newAccounting = new AccountingDepartmnent('d3', []);
 // Throws error no report was added
