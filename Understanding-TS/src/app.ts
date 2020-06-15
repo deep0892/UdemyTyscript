@@ -1,53 +1,44 @@
-console.log('your code goes here!!', '');
+class Department {
+  // private readonly id: string;
+  // public name: string;
+  private employees: string[] = [];
 
-const userName = 'Max';
-// userName = 'Max'; can't be changed
+  constructor(private readonly id: string, public name: string) {
+    // this.id = id;
+    // this.name = name;
+  }
 
-// let age = 30;
+  describe(this: Department) {
+    console.log(`Department: (${this.id}) ${this.name}`);
+  }
 
-// age = 40;
+  addEmployee(employee: string) {
+    this.employees.push(employee);
 
-const add = (a: number, b: number) => a + b;
-console.log(add(10, 20));
+  }
 
-const printOutput: (a: number | string) => void = (output) =>
-  console.log(output);
+  printEmployeeInformation() {
+    console.log(this.employees.length);
+    console.log(this.employees);
+  }
 
-printOutput(add(10, 20));
-
-const button = document.querySelector('button');
-if (button) {
-  button.addEventListener('click', (event) => console.log(event));
 }
 
-// Spread operator
-const hobbies = ['Sports', 'Cooking'];
+const accounting = new Department('A&B', 'Accounting');
 
-const activeHobbies = ['Hiking'];
+accounting.addEmployee('Max');
+accounting.addEmployee('Manu');
 
-activeHobbies.push(...hobbies);
+// employees is a private property 
+// and hence cannot be set from outside the class
+// accounting.employees.push("Anna");
 
-const person = {
-  firstName: 'Max',
-  age: 27,
-};
+console.log(accounting);
 
-// Rest Parameters
-const copiedPerson = { ...person };
+accounting.describe();
+accounting.printEmployeeInformation();
 
-const newAdd = (...numbers: number[]) => {
-  let result = 0;
-  numbers.reduce((previous, current) => {
-    return current + previous;
-  }, 0);
-};
+const accountingCopy = { describe: accounting.describe };
 
-const addedNumbers = newAdd(5, 10, 2, 23, 4, 5);
-console.log(addedNumbers);
+// accountingCopy.describe()   gives error becoz that constructor wasnt invoked for this.
 
-//  Array & Object Destructuring
-
-const [hobby1, hobby2, ...remainingHobbies] = hobbies;
-console.log(hobby1, hobby2, remainingHobbies, hobbies);
-
-const { firstName, age } = person;
