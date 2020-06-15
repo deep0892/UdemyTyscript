@@ -1,7 +1,8 @@
 class Department {
   // private readonly id: string;
   // public name: string;
-  private employees: string[] = [];
+  // Protected properties can be accessed from child classes
+  protected employees: string[] = [];
 
   constructor(private readonly id: string, public name: string) {
     // this.id = id;
@@ -56,6 +57,12 @@ class AccountingDepartmnent extends Department {
     super(id, 'Accounting');
   }
 
+  addEmployee(name: string) {
+    if (name != 'Max') {
+      this.employees.push(name);
+    }
+  }
+
   addReport(report: string) {
     this.reports.push(report);
   }
@@ -68,5 +75,9 @@ class AccountingDepartmnent extends Department {
 const newAccounting = new AccountingDepartmnent('d3', []);
 newAccounting.addReport('First Report');
 newAccounting.addReport('Second Report');
+newAccounting.addEmployee('Max');
+newAccounting.addEmployee('Mann');
 console.log(newAccounting);
 console.log(newAccounting.printReports());
+console.log(newAccounting.printEmployeeInformation());
+
