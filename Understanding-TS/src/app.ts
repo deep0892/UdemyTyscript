@@ -17,7 +17,9 @@ user1 = {
 user1.greet('Hi there, I am');
 
 interface Named {
-  readonly name: string;
+  readonly name?: string;
+  // Optional properties in interface
+  outputName?: string;
 }
 
 interface Greetable extends Named {
@@ -25,13 +27,21 @@ interface Greetable extends Named {
 }
 
 class NewPerson implements Greetable {
-  name: string;
+  // Optional properties in classes
+  name?: string;
   age = 20;
-  constructor(n: string) {
-    this.name = n;
+  // Optional parameter in function
+  constructor(n?: string) {
+    if (n) {
+      this.name = n;
+    }
   }
   greet(phrase: string) {
-    console.log(phrase + ' ' + this.name);
+    if (this.name) {
+      console.log(phrase + ' ' + this.name);
+    } else {
+      console.log('Hi');
+    }
   }
 }
 
