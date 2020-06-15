@@ -59,6 +59,7 @@ it.describe();
 
 class AccountingDepartmnent extends Department {
   private lastReport: string;
+  private static instance: AccountingDepartmnent;
 
   get mostRecentReport() {
     if (this.lastReport) {
@@ -74,9 +75,18 @@ class AccountingDepartmnent extends Department {
     this.addReport(value);
   }
 
-  constructor(id: string, private reports: string[]) {
+  private constructor(id: string, private reports: string[]) {
     super(id, 'Accounting');
     this.lastReport = reports[0];
+  }
+
+  static getInstance() {
+    if (this.instance) {
+      return this.instance;
+    } else {
+      this.instance = new AccountingDepartmnent('d2', []);
+      return this.instance;
+    }
   }
 
   addEmployee(name: string) {
@@ -98,7 +108,10 @@ class AccountingDepartmnent extends Department {
 const employee1 = Department.createEmployee('Max');
 console.log('employee1', employee1, 'FiscalYear', Department.fiscalYear);
 
-const newAccounting = new AccountingDepartmnent('d3', []);
+const newAccounting = AccountingDepartmnent.getInstance();
+const newAccounting2 = AccountingDepartmnent.getInstance();
+console.log('newAccounting,', newAccounting);
+console.log('newAccounting2', newAccounting2);
 // Throws error no report was added
 // console.log(newAccounting.mostRecentReport);
 // newAccounting.mostRecentReport = '';
