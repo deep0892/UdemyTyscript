@@ -122,3 +122,21 @@ const errorBag: ErrorContainer = {
   email: 'Not a email',
   userName: 'Must start with a capital letter'
 };
+
+// Function overloading
+function addition(a: number, b: number): number;
+function addition(a: string, b: string): string;
+function addition(a: number, b: string): string;
+function addition(a: Combinable, b: Combinable) {
+  // Type gaurd
+  if (typeof a === 'string' || typeof b === 'string') {
+    return a.toString() + b.toString();
+  }
+  return a + b;
+}
+
+const result = addition('Dips', 'Singh');
+const arr = result.split(' ');
+
+const result1 = addition(1, 5);
+// result1.split('') not allowed as the returned result is number
