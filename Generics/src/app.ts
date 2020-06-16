@@ -1,5 +1,5 @@
 // Generic types Array<T>
-const names: Array<string> = [];
+// const names: Array<string> = [];
 
 // Promise<T>
 const promise: Promise<number> = new Promise((resolve, reject) => {
@@ -61,6 +61,7 @@ class DataStorage<T extends string | number | boolean> {
     this.data.splice(this.data.indexOf(item), 1);
   }
 
+
   getItems() {
     return [...this.data];
   }
@@ -78,3 +79,23 @@ numberStorage.addItem(2);
 numberStorage.removeItem(2);
 console.log('numberStorage', numberStorage.getItems());
 
+// Generic Utility Types
+interface CourseGoal {
+  title: string;
+  description: string;
+  completeUntil: Date;
+}
+
+function createCourseGoal(title: string, description: string, date: Date): CourseGoal {
+  let courseGoal: Partial<CourseGoal> = {};;
+  courseGoal.title = title;
+  courseGoal.description = description;
+  courseGoal.completeUntil = date;
+  return courseGoal as CourseGoal;
+}
+
+// Readonly
+const names: Readonly<string[]> = ['Max', 'Mann'];
+// Not allowed to these operation
+// names.push('Anna');
+// name.pop();
