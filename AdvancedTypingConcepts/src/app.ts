@@ -140,3 +140,29 @@ const arr = result.split(' ');
 
 const result1 = addition(1, 5);
 // result1.split('') not allowed as the returned result is number
+
+// Optional Chainging
+
+const fetchedUserData = {
+  id: 'u1',
+  name: 'Dips',
+  job: { title: 'CEO', description: 'My own company' }
+};
+
+// if job does not exists this 
+console.log(fetchedUserData.job && fetchedUserData.job.title);
+// Optional chaining, another way for implending above
+console.log(fetchedUserData?.job?.title);
+
+// Nullish Coalescing
+const userInput = null;
+
+// const storedData = userInput || 'Default';
+// Check only for null and undefined
+const storedData = userInput ?? 'Default';
+console.log(storedData);
+console.log(undefined ?? 'Default'); // 'Default'
+console.log(null ?? 'Default');      // 'Default'
+console.log('' ?? 'Default');        // ''
+console.log('' || 'Default');        // 'Default'
+
