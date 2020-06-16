@@ -38,4 +38,13 @@ function countAndDescribe<T extends Lengthy>(element: T): [T, string] {
 };
 console.log(countAndDescribe('Hi There!'));
 console.log(countAndDescribe([]));
-console.log(countAndDescribe(['Dips', 'Ships'])); 
+console.log(countAndDescribe(['Dips', 'Ships']));
+
+
+function extractAndConvert<T extends object, U extends keyof T>(obj: T, key: U) {
+  return 'Value:' + obj[key];
+}
+
+// Givens error as the object doesnt have name property
+// console.log(extractAndConvert({}, 'name'));
+console.log(extractAndConvert({ name: 'Dips' }, 'name'));
