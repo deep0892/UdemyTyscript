@@ -5,15 +5,20 @@ function Logger(logstring: string) {
   };
 }
 
+// Returning and changing a Class in a Class Decorator
 function WithTemplate(template: string, hookId: string) {
-  return function (constructor: any) {
-    console.log('rendering template');
-    const hookEl = document.getElementById(hookId);
-    const p = new constructor();
-    if (hookEl) {
-      hookEl.innerHTML = template;
-      hookEl.querySelector('h1')!.textContent = p.name;
-    }
+  return function <T extends { new(...args: any[]): { name: string; }; }>(originalConstructor: T) {
+    return class extends originalConstructor {
+      constructor(...args: any[]) {
+        super();
+        console.log('rendering template');
+        const hookEl = document.getElementById(hookId);
+        if (hookEl) {
+          hookEl.innerHTML = template;
+          hookEl.querySelector('h1')!.textContent = this.name;
+        }
+      }
+    };
   };
 }
 
@@ -86,4 +91,7 @@ class Product {
     return this._price * (1 + tax);
   }
 }
+
+const p1 = new Product('Book', 10);
+const p2 = new Product('Socks', 2);
 
